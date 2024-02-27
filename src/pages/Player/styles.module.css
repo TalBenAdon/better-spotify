@@ -1,0 +1,17 @@
+.contentContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.leftBodyPlayer {
+    /* width: 100%; */
+    flex: 1;
+}
+
+.rightBodyPlayer {
+    width: calc(100% - 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
   font-family: poppins, sans-serif;
+  box-sizing: border-box;
 }
 
 html,
@@ -33,4 +34,38 @@ body {
   height: 100%;
   background-color: #1E2A3E;
   border-radius: 30px;
+  background-image: repeating-radial-gradient(circle at center left,
+      transparent 0,
+      #233656 100px),
+    repeating-linear-gradient(#1e2a3e55, #1e2a3e);
+
+
+}
+
+.fade-transition-enter {
+  opacity: 0.01;
+  transform: scale(0.9);
+  /* Initial scale value for entering elements */
+}
+
+.fade-transition-enter-active,
+.fade-transition-exit-active {
+  opacity: 1;
+  transform: scale(1);
+  /* Final scale value for both entering and exiting elements */
+  transition: opacity 500ms ease-in, transform 500ms ease-in;
+  /* Add transform to the transition property */
+}
+
+.fade-transition-exit {
+  opacity: 1;
+  transform: scale(1);
+  /* Initial scale value for exiting elements */
+}
+
+.fade-transition-exit-active {
+  opacity: 0.01;
+  /* Full opacity for initial state */
+  transform: scale(0.9);
+  /* Full scale for initial state */
 }

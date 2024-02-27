@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
-import iconImg from '../../assets/3142_Assassin_T3_YoumuusGhostbladePNG.png'
+import defaultImg from '../../assets/3142_Assassin_T3_YoumuusGhostbladePNG.png'
 import SideBarButton from '../SideBarButton'
 import { MdFavorite } from "react-icons/md";
 import { FaGripfire, FaPlay, FaSignOutAlt } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
 import { MdSpaceDashboard } from "react-icons/md";
+import api from '../../helpers/api';
+
 
 const sideBarBtnData = [
     { title: "Feed", to: "/feed", icon: <MdSpaceDashboard /> },
@@ -16,9 +18,18 @@ const sideBarBtnData = [
 ]
 
 export default function SideBar() {
+    const [img, setImg] = useState(defaultImg)
+    useEffect(() => {
+        const userImage = api.apiRec({ method: 'GET', url: 'me' }).then(res => setImg(res.images[0].url))
+
+        if (!userImage) {
+            setImg(defaultImg)
+        }
+    }, [])
+
     return (
         <div className={styles.sideBarContainer}>
-            <img src={iconImg} alt="user Icon"
+            <img src={img} alt="user Icon"
                 className={styles.profileImage} />
 
             <div >

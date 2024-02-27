@@ -9,12 +9,12 @@ import Favorites from '../Favorites'
 import SideBar from '../../components/SideBar'
 import { useState } from 'react'
 import Login from '../Login'
-import useAuth from '../../helpers/useAuth'
+
 export default function Home() {
-    const [loggedIn, setLoggedIn] = useState(false)
     const nav = useNavigate()
     useEffect(() => {
-        if (!loggedIn) {
+        const token = localStorage.getItem('token')
+        if (!token || token === 'undefined') {
             nav('/login')
         }
     }, [])
@@ -23,7 +23,7 @@ export default function Home() {
         <div className={styles.mainBody}>
             {window.location.pathname !== '/login' && <SideBar />}
             <Routes>
-                <Route path='/login' element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+                <Route path='/login' element={<Login />} />
 
                 <Route index element={<Library />} />
                 <Route path='/feed' element={<Feed />} />
