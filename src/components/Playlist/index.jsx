@@ -2,14 +2,15 @@ import React from 'react'
 import styles from './styles.module.css'
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-export default function Playlist({ name, image, totalSongs, id, toggleComponent }) {
+export default function Playlist({ name, image, totalSongs, id, toggleComponent, navigateToPlayer }) {
     const nav = useNavigate()
     const playPlaylist = () => {
-        toggleComponent()
-        setTimeout(() => {
+        navigateToPlayer(id)
+        // toggleComponent()
+        // setTimeout(() => {
 
-            nav('/player', { state: { id: id } })
-        }, 500)
+        //     nav('/player', { state: { id: id } })
+        // }, 500)
 
     }
     return (

@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import spotifyImg from '../../assets/spotify-xxl.png'
 import api from '../../helpers/api.js'
 import axios from 'axios'
-import { redirect } from 'react-router-dom'
+import { redirect, useNavigate } from 'react-router-dom'
 
 // const AUTH_URL = 'https://accounts.spotify.com/authorize?client_id=164140a295ac4c2aa4b47ec705cd51a9&response_type=code&redirect_uri=http://localhost:5173&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state'
 const getTokenFromUrl = () => {
@@ -17,7 +17,7 @@ const getTokenFromUrl = () => {
         }, {})
 }
 export default function Login({ loggedIn, setLoggedIn }) {
-    // const nav = useNavigate()
+    const nav = useNavigate()
     const [spotifyToken, setSpotifyToken] = useState("")
 
 
@@ -34,7 +34,8 @@ export default function Login({ loggedIn, setLoggedIn }) {
             setSpotifyToken(spotifyToken)
             localStorage.token = spotifyToken
             localStorage.refreshToken = refreshToken
-            redirect('/')
+            // redirect('/')
+            nav('/')
         }
 
 
@@ -45,7 +46,8 @@ export default function Login({ loggedIn, setLoggedIn }) {
         const token = localStorage.getItem('token')
         if (token && token !== 'undefined') {
             setSpotifyToken(token)
-            redirect('/')
+            // redirect('/')
+            nav('/')
         }
     }, [])
     return (

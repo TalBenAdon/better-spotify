@@ -24,6 +24,7 @@ async function refreshTokenFromApi() {
         // const newRefreshToken = response.data.refresh_token;
         localStorage.setItem('token', newAccessToken)
         console.log({ "access token": newAccessToken });
+        return newAccessToken
         // console.log('New Access Token:', newAccessToken);
         // console.log('New Refresh Token:', newRefreshToken);
     } catch (refreshError) {
@@ -47,7 +48,8 @@ async function apiRec({ method, url, body }) {
     } catch (error) {
         if (error.response && error.response.status === 401) {
             try {
-                await refreshTokenFromApi()
+                const newAccessToken = await refreshTokenFromApi()
+
 
             } catch (error) {
 
