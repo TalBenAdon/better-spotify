@@ -8,6 +8,7 @@ import Player from '../Player'
 import Favorites from '../Favorites'
 import SideBar from '../../components/SideBar'
 import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import Login from '../Login'
 
 export default function Home() {
@@ -23,6 +24,8 @@ export default function Home() {
         <div className={styles.mainBody}>
             {window.location.pathname !== '/login' && <SideBar />}
             <Routes>
+
+
                 <Route path='/login' element={<Login />} />
 
                 <Route index element={<Library />} />
@@ -30,6 +33,7 @@ export default function Home() {
                 <Route path='/trending' element={<Trending />} />
                 <Route path='/player' element={<Player />} />
                 <Route path='/favorites' element={<Favorites />} />
+
             </Routes>
         </div>
     )

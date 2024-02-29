@@ -2,16 +2,21 @@ import React from 'react'
 import styles from './styles.module.css'
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion'
 export default function Playlist({ name, image, totalSongs, id }) {
     const nav = useNavigate()
-    const playPlaylist = () => {
+    const playPlaylist = (id) => {
 
         nav('/player', { state: { id: id } })
 
 
     }
     return (
-        <div className={styles.playlistCard} onClick={playPlaylist} >
+
+
+
+
+        <div className={styles.playlistCard} onClick={() => playPlaylist(id)} >
             <img src={image} alt="playlist Image" className={styles.playlistImage} />
             <p className={styles.PlaylistTitle}>{name}</p>
             <p className={styles.PlaylistSubtitle}>{`${totalSongs} Songs`}</p>
@@ -21,5 +26,9 @@ export default function Playlist({ name, image, totalSongs, id }) {
 
             </div>
         </div>
+
+
+
+
     )
 }

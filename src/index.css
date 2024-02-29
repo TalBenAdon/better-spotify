@@ -41,31 +41,3 @@ body {
 
 
 }
-
-.fade-transition-enter {
-  opacity: 0.01;
-  transform: scale(0.9);
-  /* Initial scale value for entering elements */
-}
-
-.fade-transition-enter-active,
-.fade-transition-exit-active {
-  opacity: 1;
-  transform: scale(1);
-  /* Final scale value for both entering and exiting elements */
-  transition: opacity 500ms ease-in, transform 500ms ease-in;
-  /* Add transform to the transition property */
-}
-
-.fade-transition-exit {
-  opacity: 1;
-  transform: scale(1);
-  /* Initial scale value for exiting elements */
-}
-
-.fade-transition-exit-active {
-  opacity: 0.01;
-  /* Full opacity for initial state */
-  transform: scale(0.9);
-  /* Full scale for initial state */
-}

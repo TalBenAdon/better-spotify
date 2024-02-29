@@ -35,7 +35,13 @@ async function refreshTokenFromApi() {
 async function apiRec({ method, url, body }) {
     try {
         let accessToken = getTokenFromStorage()
-        if (!accessToken || accessToken === 'undefined') return
+        // if (!accessToken || accessToken === 'undefined') return
+        if (!accessToken) window.location.href = 'http://localhost:5173/login'
+        if (accessToken === 'undefined') {
+            localStorage.removeItem('token')
+            localStorage.removeItem('refreshToken')
+            window.location.href = 'http://localhost:5173/login'
+        }
         // console.log(accessToken);
         const { data } = await axios({
             method,
@@ -49,10 +55,20 @@ async function apiRec({ method, url, body }) {
         if (error.response && error.response.status === 401) {
             try {
                 const newAccessToken = await refreshTokenFromApi()
-
+                if (!newAccessToken || newAccessToken === 'undefined') return
+                // console.log(accessToken);
+                const { data } = await axios({
+                    method,
+                    baseURL: 'https://api.spotify.com/v1/',
+                    url,
+                    headers: { 'Authorization': 'Bearer ' + newAccessToken },
+                    data: body,
+                })
+                return data
 
             } catch (error) {
 
+                console.log(error);
             }
         }
         console.log(error);
