@@ -1,7 +1,13 @@
 import React from 'react'
 import styles from './styles.module.css'
-export default function SongCard() {
+import AlbumImage from '../AlbumImage'
+import AlbumInfo from '../AlbumInfo'
+export default function SongCard({ album }) {
+
     return (
-        <div>SongCard</div>
+        <div className={styles.songCardBody}>
+            <AlbumImage imageUrl={album?.images[0]?.url} />
+            <AlbumInfo album={album} />
+        </div>
     )
 }
