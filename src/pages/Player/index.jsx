@@ -17,6 +17,7 @@ export default function Player() {
                     const response = await api.apiRec({ method: "GET", url: `/playlists/${location.state.id}/tracks` })
                     setTracks(response.items)
                     setCurrentTrack(response.items[0].track)
+                    console.log(currentTrack);
                 } catch (error) {
                     console.error({ "Error fetching data:": error });
                 }
@@ -24,6 +25,11 @@ export default function Player() {
         }
         fetchData()
     }, [location.state])
+
+    useEffect(() => {
+        if (tracks.length > 0) setCurrentTrack(tracks[currentIndex].track)
+    }, [currentIndex, tracks])
+
     return (
         <div className="screenContainer">
             <div className={styles.contentContainer}>
@@ -31,7 +37,7 @@ export default function Player() {
                 <div className={styles.leftBodyPlayer}>Left Content</div>
                 <div className={styles.rightBodyPlayer}>
                     <SongCard album={currentTrack.album} />
-                    <Queue />
+                    <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
                 </div>
             </div>
         </div>
