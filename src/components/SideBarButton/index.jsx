@@ -14,3 +14,4 @@ export default function SideBarButton({ title, to, icon }) {
         </NavLink>
     )
 }
+
