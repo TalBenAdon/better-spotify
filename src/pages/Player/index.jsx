@@ -4,6 +4,7 @@ import SongCard from '../../components/SongCard'
 import Queue from '../../components/Queue'
 import { useLocation } from 'react-router-dom'
 import api from '../../helpers/api'
+import AudioPlayer from '../../components/AudioPlayer'
 export default function Player() {
     const location = useLocation()
     const [tracks, setTracks] = useState([])
@@ -33,8 +34,9 @@ export default function Player() {
     return (
         <div className="screenContainer">
             <div className={styles.contentContainer}>
-
-                <div className={styles.leftBodyPlayer}>Left Content</div>
+                <div className={styles.leftBodyPlayer}>
+                    <AudioPlayer currentTrack={currentTrack} />
+                </div>
                 <div className={styles.rightBodyPlayer}>
                     <SongCard album={currentTrack.album} />
                     <Queue tracks={tracks} setCurrentIndex={setCurrentIndex} />
