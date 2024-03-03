@@ -3,8 +3,7 @@ import styles from './styles.module.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import api from '../../helpers/api'
 import Playlist from '../../components/Playlist'
-import { motion, AnimatePresence } from 'framer-motion'
-import AnimatedPage from '../../helpers/AnimatedPage'
+
 export default function Library() {
 
     const [playlists, setPlaylists] = useState([])
