@@ -42,3 +42,12 @@ body {
   overflow: hidden;
   overflow-y: auto;
 }
+
+.generalGridcardsContainer {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-content: space-between;
+  gap: 24px;
+
+}

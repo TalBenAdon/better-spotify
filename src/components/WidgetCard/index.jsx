@@ -11,7 +11,7 @@ export default function WidgetCard({ title, widgetState, url }) {
         switch (title) {
             case 'Similar Artists':
                 console.log(url);
-                nav('/feed', { state: { url: url } })
+                nav('/feed/related-artists', { state: { url: url } })
 
                 break;
             case 'Made For You':

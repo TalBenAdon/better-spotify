@@ -32,7 +32,7 @@ export default function Library() {
 
         <div className="screenContainer">
 
-            <div className={styles.libraryContainer}>
+            <div className='generalGridcardsContainer'>
 
 
                 {playlists.map((playlist, index) => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Router, Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
 import Library from '../Library'
 import Feed from '../Feed'
@@ -7,9 +7,11 @@ import Trending from '../Trending'
 import Player from '../Player'
 import Favorites from '../Favorites'
 import SideBar from '../../components/SideBar'
-import { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
 import Login from '../Login'
+import RelatedArtists from '../Feed/RelatedArtists'
+import ArtistDetails from '../Feed/ArtistDetails'
+import DefaultFeed from '../Feed/DefaultFeed'
+import ManageContext from '../../context/ManageContext'
 
 export default function Home() {
     const nav = useNavigate()
@@ -22,19 +24,26 @@ export default function Home() {
 
     return (
         <div className={styles.mainBody}>
+
             {window.location.pathname !== '/login' && <SideBar />}
-            <Routes>
+            <ManageContext>
+                <Routes>
 
 
-                <Route path='/login' element={<Login />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route index element={<Library />} />
+                    <Route path='/feed' element={<Feed />} >
+                        <Route index element={<DefaultFeed />} />
+                        <Route path='related-artists' element={<RelatedArtists />} />
+                        <Route path='related-artists/:artistId' element={<ArtistDetails />} />
+                    </Route>
 
-                <Route index element={<Library />} />
-                <Route path='/feed' element={<Feed />} />
-                <Route path='/trending' element={<Trending />} />
-                <Route path='/player' element={<Player />} />
-                <Route path='/favorites' element={<Favorites />} />
+                    <Route path='/trending' element={<Trending />} />
+                    <Route path='/player' element={<Player />} />
+                    <Route path='/favorites' element={<Favorites />} />
 
-            </Routes>
-        </div>
+                </Routes>
+            </ManageContext>
+        </div >
     )
 }
