@@ -1,4 +1,4 @@
-.playlistCard {
+.singleCardBody {
     position: relative;
     border-radius: 20px;
     background-color: rgb(30, 42, 62);
@@ -11,35 +11,36 @@
     transition: all 0.3s ease;
 }
 
-.playlistCard:hover {
+.singleCardBody:hover {
     transform: scale(1.05);
 }
 
-.playlistImage {
+.cardImage {
     width: 100%;
     border-radius: 20px;
 
 }
 
-.PlaylistTitle {
+.cardTitle {
     font-weight: 800;
     color: #c4d0e3;
     margin: 6px 0px 6px;
 }
 
 
-.PlaylistSubtitle {
+.cardSubtitle {
     font-weight: 400;
     font-size: 12px;
     color: #c4d0e37c;
 }
 
-.playlistCard:hover .playlistFade {
+
+.singleCardBody:hover .cardFade {
     opacity: 1;
 
 }
 
-.playlistFade {
+.cardFade {
     position: absolute;
     top: 0;
     right: 0;

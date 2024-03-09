@@ -1,0 +1,69 @@
+import React from 'react'
+import styles from './styles.module.css'
+import WidgetEntry from '../WidgetEntry';
+import { FiChevronRight } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom';
+export default function WidgetCard({ title, widgetState, url }) {
+
+    const nav = useNavigate()
+
+    const handleOnclick = (title, url) => {
+        switch (title) {
+            case 'Similar Artists':
+                console.log(url);
+                nav('/feed', { state: { url: url } })
+
+                break;
+            case 'Made For You':
+                nav('/trending', { state: { url: url } })
+
+                break
+            case 'New Releases':
+                nav('/trending', { state: { url: url } })
+
+                break
+            default:
+                break;
+        }
+
+    }
+
+    const getKey = (item) => {
+        switch (title) {
+            case 'Similar Artists':
+                return {
+                    title: item?.name,
+                    subtitle: `${item?.followers.total} Followers`,
+                    image: item?.images[2]?.url
+                }
+            case 'Made For You':
+                return {
+                    title: item?.name,
+                    subtitle: `${item?.tracks.total} track(s)`,
+                    image: item?.images[0]?.url
+                }
+            case 'New Releases':
+                return {
+                    title: item?.name,
+                    subtitle: item?.artists[0]?.name,
+                    image: item?.images[0]?.url
+                }
+            default:
+                break;
+        }
+    }
+    return (
+        <div className={styles.WidgetCardBody} onClick={() => handleOnclick(title, url)}>
+            <p className={styles.WidgetTitle}>{title}</p>
+            {widgetState ? widgetState.map((item, index) => {
+                const { title, subtitle, image } = getKey(item)
+                return <WidgetEntry key={index} title={title} subtitle={subtitle} image={image} />
+            }) : null}
+            <div className={styles.fade}>
+                <div className={styles.arrow}>
+                    <FiChevronRight />
+                </div>
+            </div>
+        </div>
+    )
+}

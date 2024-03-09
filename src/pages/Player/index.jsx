@@ -5,6 +5,7 @@ import Queue from '../../components/Queue'
 import { useLocation } from 'react-router-dom'
 import api from '../../helpers/api'
 import AudioPlayer from '../../components/AudioPlayer'
+import Widgets from '../../components/Widgets'
 export default function Player() {
     const location = useLocation()
     const [tracks, setTracks] = useState([])
@@ -30,12 +31,18 @@ export default function Player() {
     useEffect(() => {
         if (tracks.length > 0) setCurrentTrack(tracks[currentIndex].track)
     }, [currentIndex, tracks])
+    console.log(currentTrack?.album);
 
     return (
         <div className="screenContainer">
             <div className={styles.contentContainer}>
                 <div className={styles.leftBodyPlayer}>
-                    <AudioPlayer currentTrack={currentTrack} />
+                    <AudioPlayer currentTrack={currentTrack}
+                        total={tracks}
+                        isPlaying={true}
+                        currentIndex={currentIndex}
+                        setCurrentIndex={setCurrentIndex} />
+                    <Widgets artistId={currentTrack?.album} />
                 </div>
                 <div className={styles.rightBodyPlayer}>
                     <SongCard album={currentTrack.album} />
