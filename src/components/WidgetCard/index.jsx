@@ -3,8 +3,10 @@ import styles from './styles.module.css'
 import WidgetEntry from '../WidgetEntry';
 import { FiChevronRight } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom';
+import timeFormat from '../../helpers/timeFormat';
 export default function WidgetCard({ title, widgetState, url }) {
 
+    const trimmedWidgetState = widgetState.slice(0, 3)
     const nav = useNavigate()
 
     const handleOnclick = (title, url) => {
@@ -17,11 +19,13 @@ export default function WidgetCard({ title, widgetState, url }) {
             case 'Made For You':
                 nav('/trending', { state: { url: url } })
 
-                break
+                break;
             case 'New Releases':
                 nav('/trending', { state: { url: url } })
 
-                break
+                break;
+            case 'Top Songs':
+                nav('top-songs')
             default:
                 break;
         }
@@ -29,6 +33,7 @@ export default function WidgetCard({ title, widgetState, url }) {
     }
 
     const getKey = (item) => {
+
         switch (title) {
             case 'Similar Artists':
                 return {
@@ -48,6 +53,18 @@ export default function WidgetCard({ title, widgetState, url }) {
                     subtitle: item?.artists[0]?.name,
                     image: item?.images[0]?.url
                 }
+            case 'Top Songs':
+                return {
+                    title: item?.name,
+                    subtitle: timeFormat.formatDuration(item?.duration_ms),
+                    image: item?.album?.images[0]?.url
+                }
+            case 'Artist Albums':
+                return {
+                    title: item?.name,
+                    subtitle: item?.album_type,
+                    image: item?.images[0]?.url
+                }
             default:
                 break;
         }
@@ -55,7 +72,7 @@ export default function WidgetCard({ title, widgetState, url }) {
     return (
         <div className={styles.WidgetCardBody} onClick={() => handleOnclick(title, url)}>
             <p className={styles.WidgetTitle}>{title}</p>
-            {widgetState ? widgetState.map((item, index) => {
+            {widgetState ? trimmedWidgetState.map((item, index) => {
                 const { title, subtitle, image } = getKey(item)
                 return <WidgetEntry key={index} title={title} subtitle={subtitle} image={image} />
             }) : null}

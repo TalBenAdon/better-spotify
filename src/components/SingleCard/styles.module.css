@@ -11,12 +11,24 @@
     transition: all 0.3s ease;
 }
 
+.singleArtistCard {
+    border-radius: 20px;
+    background-color: rgb(30, 42, 62);
+    border: 1px solid rgba(54, 69, 98, 0.18);
+    padding: 16px;
+    background: rgb(30, 42, 62);
+    background: linear-gradient(75deg,
+            rgb(40, 58, 88) 0%,
+            rgba(54, 69, 98, 0) 100%);
+}
+
 .singleCardBody:hover {
     transform: scale(1.05);
 }
 
 .cardImage {
-    width: 100%;
+    /* width: 100%; */
+    max-width: 200px;
     border-radius: 20px;
 
 }
