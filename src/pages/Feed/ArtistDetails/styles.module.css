@@ -1,0 +1,10 @@
+.artistDetailsCard {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.artistDetailsScreen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

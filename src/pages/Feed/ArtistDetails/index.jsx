@@ -11,7 +11,13 @@ export default function ArtistDetails() {
     console.log(artistId);
     return (
         <div className='screenContainer'>
-            <SingleCard image={artistInfo.images[0].url} title={artistInfo.name} />
+            <div className={styles.artistDetailsScreen}>
+
+                <div className={styles.artistDetailsCard}>
+
+                    <SingleCard image={artistInfo.images[0].url} title={artistInfo.name} subtitle={`${artistInfo.followers?.total} followers`} />
+                </div>
+            </div>
         </div>
     )
 }
