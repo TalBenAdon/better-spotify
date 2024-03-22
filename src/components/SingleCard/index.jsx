@@ -1,16 +1,19 @@
 import React from 'react'
 import styles from './styles.module.css'
 //my generic component for when I need to get a list of single cards with an onclick function I choose
-export default function SingleCard({ handleOnclick, image, title, subtitle, icon }) {
+export default function SingleCard({ handleOnclick, image, title, subtitle, icon, style }) {
     return (
 
-        <div className={styles.singleCardBody} onClick={handleOnclick} >
+        <div className={style === "artist" ? styles.singleArtistCard : styles.singleCardBody} onClick={handleOnclick} >
             <img src={image} alt="playlist Image" className={styles.cardImage} />
             <p className={styles.cardTitle}>{title}</p>
             <p className={styles.cardSubtitle}>{subtitle}</p>
-            <div className={styles.cardFade}>
-                {icon}
-            </div>
+
+            {style === "artist" ? null :
+                <div className={styles.cardFade}>
+                    {icon}
+                </div>
+            }
 
         </div>
     )

@@ -1,10 +1,6 @@
-.artistDetailsCard {
-    max-width: 300px;
-    max-height: 300px;
-}
-
-.artistDetailsScreen {
-    width: 100%;
+.artistInfoContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

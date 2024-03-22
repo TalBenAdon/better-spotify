@@ -12,6 +12,7 @@ import RelatedArtists from '../Feed/RelatedArtists'
 import ArtistDetails from '../Feed/ArtistDetails'
 import DefaultFeed from '../Feed/DefaultFeed'
 import ManageContext from '../../context/ManageContext'
+import TopSongs from '../TopSongs'
 
 export default function Home() {
     const nav = useNavigate()
@@ -35,7 +36,9 @@ export default function Home() {
                     <Route path='/feed' element={<Feed />} >
                         <Route index element={<DefaultFeed />} />
                         <Route path='related-artists' element={<RelatedArtists />} />
-                        <Route path='related-artists/:artistId' element={<ArtistDetails />} />
+                        <Route path='related-artists/:artistId' element={<ArtistDetails />} >
+                            <Route path='top-songs' element={<TopSongs />} />
+                        </Route>
                     </Route>
 
                     <Route path='/trending' element={<Trending />} />
