@@ -14,21 +14,21 @@ export default function Widgets({ artistId }) {
                 try {
                     const response = await api.apiRec({ method: "GET", url: `/artists/${id}/related-artists` })
                     console.log(response);
-                    const artists = response?.artists.slice(0, 3)
+                    const artists = response?.artists
                     SetSimilar(artists)
                 } catch (error) {
                     console.error({ "error getting artists": error });
                 }
                 try {
                     const response = await api.apiRec({ method: "GET", url: `/browse/featured-playlists` })
-                    const playlists = response?.playlists?.items.slice(0, 3)
+                    const playlists = response?.playlists?.items
                     SetFeatured(playlists)
                 } catch (error) {
                     console.error({ "error getting featured": error });
                 }
                 try {
                     const response = await api.apiRec({ method: "GET", url: `/browse/new-releases` })
-                    const releases = response?.albums?.items.slice(0, 3)
+                    const releases = response?.albums?.items
                     SetNewRelease(releases)
                 } catch (error) {
                     console.error({ "error getting featured": error });

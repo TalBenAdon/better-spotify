@@ -4,3 +4,11 @@
     align-items: center;
     flex-direction: column;
 }
+
+.widgetsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}

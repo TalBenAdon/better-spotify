@@ -4,8 +4,11 @@ import styles from './styles.module.css'
 export default function SingleCard({ handleOnclick, image, title, subtitle, icon, style }) {
     return (
 
-        <div className={style === "artist" ? styles.singleArtistCard : styles.singleCardBody} onClick={handleOnclick} >
-            <img src={image} alt="playlist Image" className={styles.cardImage} />
+        <div className={
+            style === "artist" ? styles.singleArtistCard :
+                style === "albums" ? styles.albumCardBody :
+                    styles.singleCardBody} onClick={handleOnclick} >
+            <img src={image} alt="content Image" className={styles.cardImage} />
             <p className={styles.cardTitle}>{title}</p>
             <p className={styles.cardSubtitle}>{subtitle}</p>
 

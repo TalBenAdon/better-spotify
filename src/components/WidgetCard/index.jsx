@@ -8,8 +8,7 @@ export default function WidgetCard({ title, widgetState, url }) {
 
     const trimmedWidgetState = widgetState.slice(0, 3)
     const nav = useNavigate()
-
-    const handleOnclick = (title, url) => {
+    const handleOnclick = (title, url, widgetState) => {
         switch (title) {
             case 'Similar Artists':
                 console.log(url);
@@ -17,7 +16,7 @@ export default function WidgetCard({ title, widgetState, url }) {
 
                 break;
             case 'Made For You':
-                nav('/trending', { state: { url: url } })
+                nav('/trending/playlists', { state: widgetState })
 
                 break;
             case 'New Releases':
@@ -26,6 +25,9 @@ export default function WidgetCard({ title, widgetState, url }) {
                 break;
             case 'Top Songs':
                 nav('top-songs')
+                break;
+            case 'Artist Albums':
+                nav('albums')
             default:
                 break;
         }
@@ -70,7 +72,7 @@ export default function WidgetCard({ title, widgetState, url }) {
         }
     }
     return (
-        <div className={styles.WidgetCardBody} onClick={() => handleOnclick(title, url)}>
+        <div className={styles.WidgetCardBody} onClick={() => handleOnclick(title, url, widgetState)}>
             <p className={styles.WidgetTitle}>{title}</p>
             {widgetState ? trimmedWidgetState.map((item, index) => {
                 const { title, subtitle, image } = getKey(item)
