@@ -20,7 +20,7 @@ export default function WidgetCard({ title, widgetState, url }) {
 
                 break;
             case 'New Releases':
-                nav('/trending', { state: { url: url } })
+                nav('/trending/new-releases', { state: widgetState })
 
                 break;
             case 'Top Songs':

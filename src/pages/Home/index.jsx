@@ -17,6 +17,8 @@ import Albums from '../Albums'
 import AlbumSongs from '../AlbumSongs'
 import TrendingPlaylists from '../TrendingPlaylists'
 import TrendPlaylist from '../TrendingPlaylists/TrendPlaylist'
+import NewReleases from '../Trending/NewReleases'
+import NewReleaseItem from '../Trending/NewReleases/NewReleaseItem'
 
 export default function Home() {
     const nav = useNavigate()
@@ -49,6 +51,11 @@ export default function Home() {
                     </Route>
 
                     <Route path='/trending' element={<Trending />} >
+
+                        <Route path='new-releases' element={<NewReleases />} >
+                            <Route path=':newReleaseId' element={<NewReleaseItem />} />
+                        </Route>
+
                         <Route path='playlists' element={<TrendingPlaylists />} >
                             <Route path=':playlistId' element={<TrendPlaylist />} />
                         </Route>

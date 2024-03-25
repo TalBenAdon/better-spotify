@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import SingleCard from '../../components/SingleCard';
 import { FiChevronRight } from 'react-icons/fi'
 export default function TrendingPlaylists() {
@@ -25,6 +25,7 @@ export default function TrendingPlaylists() {
                     />
                 )
             })}
+            <Outlet />
         </div>
     )
 }

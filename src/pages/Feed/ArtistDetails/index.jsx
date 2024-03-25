@@ -18,9 +18,6 @@ export default function ArtistDetails() {
 
     const { artistId } = useParams()
     const shouldHideWidgets = location.pathname !== `/feed/related-artists/${artistId}`
-    console.log(shouldHideWidgets);
-    console.log(artistId);
-    // const outletInfoContext = { artistId, topTracks, albums }
 
     useEffect(() => {
         if (!artistInfo || !artistInfo.id) {
